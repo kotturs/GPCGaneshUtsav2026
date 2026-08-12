@@ -3,29 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ganesh Utsav 2026 | Community Portal</title>
+  <title>ॐ Sri Siddhi Vinayaka Ganeshotsav 2026 ॐ</title>
   <style>
-    /* CSS RESET & VARS */
+    /* TRADITIONAL SACRED PALETTE & FONTS */
     :root {
-      --primary-gold: #ffb703;
-      --secondary-orange: #fb8500;
-      --bg-dark: #0d021a;
-      --card-bg: rgba(25px, 5px, 51px, 0.85);
+      --temple-gold: #FFD700;
+      --saffron-orange: #FF5722;
+      --sacred-maroon: #8B0000;
+      --deep-crimson: #5A0000;
+      --parchment-bg: #FFFBF2;
+      --text-dark: #3A0000;
     }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
       scroll-behavior: smooth;
     }
+
     body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background-color: var(--bg-dark);
-      color: #ffffff;
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background-color: var(--parchment-bg);
+      color: var(--text-dark);
       overflow-x: hidden;
+      background-image: radial-gradient(rgba(216, 67, 21, 0.05) 1px, transparent 1px);
+      background-size: 24px 24px;
     }
 
-    /* FALLING CANVAS ANIMATION */
+    /* FALLING MARIGOLD & MODAK CANVAS */
     #falling-canvas {
       position: fixed;
       top: 0;
@@ -36,121 +42,150 @@
       z-index: 9999;
     }
 
-    /* PARALLAX HERO SECTION */
+    /* PARALLAX VEDIC HERO BANNER */
     .hero {
       position: relative;
-      min-height: 85vh;
+      min-height: 88vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      background: linear-gradient(to bottom, rgba(13, 2, 26, 0.5), rgba(13, 2, 26, 0.98)),
+      background: linear-gradient(to bottom, rgba(139, 0, 0, 0.75), rgba(90, 0, 0, 0.92)),
                   url('https://images.unsplash.com/photo-1567225557594-88d73e55f2cb?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat fixed;
       padding: 40px 20px;
+      border-bottom: 6px solid var(--temple-gold);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
-    .hero h1 {
-      font-size: clamp(2.2rem, 5vw, 4rem);
-      color: var(--primary-gold);
-      text-shadow: 0 0 25px rgba(255, 183, 3, 0.7);
-      margin-bottom: 15px;
-      font-weight: 800;
+
+    .shloka-header {
+      color: #FFE082;
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+      font-style: italic;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
     }
-    .hero p {
-      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-      color: var(--secondary-orange);
-      margin-bottom: 30px;
+
+    .hero-title {
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      color: var(--temple-gold);
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 2px 2px 4px #000;
+      font-weight: bold;
+      margin-bottom: 10px;
       letter-spacing: 1px;
     }
 
-    /* AUDIO CONTROLLER */
+    .hero-subtitle {
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      color: #FFCC80;
+      margin-bottom: 25px;
+      letter-spacing: 1.5px;
+    }
+
+    /* SACRED VEDIC AUDIO PLAYER CARD */
     .audio-card {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 183, 3, 0.4);
-      padding: 12px 28px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px);
+      border: 2px solid var(--temple-gold);
+      padding: 14px 30px;
       border-radius: 50px;
       display: flex;
       align-items: center;
       gap: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-    .audio-btn {
-      background: var(--primary-gold);
-      color: var(--bg-dark);
-      border: none;
-      padding: 10px 22px;
-      font-weight: 700;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 0.95rem;
-    }
-    .audio-btn:hover {
-      background: var(--secondary-orange);
-      color: #fff;
-      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      margin-top: 10px;
     }
 
-    /* NAVIGATION TABS */
+    .audio-card span {
+      color: #FFF;
+      font-size: 1.05rem;
+      font-weight: bold;
+    }
+
+    .audio-btn {
+      background: linear-gradient(135deg, #FFD700, #FF9800);
+      color: var(--sacred-maroon);
+      border: none;
+      padding: 10px 24px;
+      font-weight: bold;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .audio-btn:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, #FF9800, #FF5722);
+      color: #FFF;
+    }
+
+    /* TEMPLE STYLED NAVIGATION TABS */
     .nav-bar {
       position: sticky;
       top: 0;
-      background: #190533;
+      background: var(--sacred-maroon);
       display: flex;
       justify-content: center;
       gap: 12px;
-      padding: 15px;
+      padding: 14px;
       z-index: 1000;
-      box-shadow: 0 4px 25px rgba(0,0,0,0.6);
-      border-bottom: 2px solid var(--primary-gold);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      border-bottom: 3px solid var(--temple-gold);
       flex-wrap: wrap;
     }
+
     .nav-tab-btn {
       background: transparent;
-      color: #fff;
-      border: 1px solid var(--primary-gold);
-      padding: 10px 22px;
-      border-radius: 30px;
+      color: #FFECB3;
+      border: 1px solid var(--temple-gold);
+      padding: 10px 24px;
+      border-radius: 25px;
       cursor: pointer;
-      font-weight: 600;
+      font-weight: bold;
+      font-size: 1rem;
       transition: all 0.3s ease;
     }
+
     .nav-tab-btn.active, .nav-tab-btn:hover {
-      background: var(--primary-gold);
-      color: var(--bg-dark);
+      background: var(--temple-gold);
+      color: var(--sacred-maroon);
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
     }
 
-    /* MAIN CONTENT CONTAINER */
+    /* CONTAINER & CONTENT SECTIONS */
     .container {
-      max-width: 1100px;
+      max-width: 1150px;
       margin: 40px auto;
       padding: 0 20px;
     }
+
     .section-title {
       text-align: center;
-      font-size: 2.2rem;
-      color: var(--primary-gold);
+      font-size: 2.3rem;
+      color: var(--sacred-maroon);
       margin-bottom: 30px;
       position: relative;
-    }
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 70px;
-      height: 4px;
-      background: var(--secondary-orange);
-      margin: 10px auto 0;
-      border-radius: 2px;
+      font-weight: bold;
     }
 
-    /* FORMS CONTAINER & SWITCHER */
+    .section-title::before, .section-title::after {
+      content: ' 卐 ';
+      color: var(--saffron-orange);
+      font-size: 1.5rem;
+    }
+
+    /* FORMS SELECTOR BAR */
     .content-section {
       display: none;
     }
+
     .content-section.active {
       display: block;
     }
+
     .form-selector-bar {
       display: flex;
       justify-content: center;
@@ -158,138 +193,139 @@
       margin-bottom: 25px;
       flex-wrap: wrap;
     }
+
     .form-sub-btn {
-      background: rgba(255, 183, 3, 0.1);
-      color: #fff;
-      border: 1px solid var(--secondary-orange);
-      padding: 8px 18px;
+      background: #FFF;
+      color: var(--sacred-maroon);
+      border: 2px solid var(--sacred-maroon);
+      padding: 10px 20px;
       border-radius: 20px;
       cursor: pointer;
-      font-size: 0.9rem;
+      font-weight: bold;
+      font-size: 0.95rem;
       transition: 0.3s;
     }
+
     .form-sub-btn.active, .form-sub-btn:hover {
-      background: var(--secondary-orange);
-      color: #fff;
+      background: var(--saffron-orange);
+      color: #FFF;
+      border-color: var(--saffron-orange);
     }
 
     .iframe-wrapper {
       position: relative;
       width: 100%;
-      height: 820px;
+      height: 840px;
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-      border: 1px solid rgba(255, 183, 3, 0.3);
-      background: #ffffff;
+      box-shadow: 0 12px 35px rgba(139, 0, 0, 0.25);
+      border: 3px solid var(--temple-gold);
+      background: #FFFFFF;
     }
+
     .iframe-wrapper iframe {
       width: 100%;
       height: 100%;
       border: none;
     }
 
-    /* TIMELINE STYLES */
-    .timeline {
+    /* VEDIC TIMELINE STYLES */
+    .timeline-card {
+      background: #FFF;
+      border-left: 5px solid var(--saffron-orange);
+      border-radius: 8px;
+      padding: 22px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
       position: relative;
-      padding-left: 25px;
-      border-left: 3px solid var(--primary-gold);
-      margin: 30px auto;
-      max-width: 800px;
-    }
-    .timeline-item {
-      margin-bottom: 30px;
-      position: relative;
-      padding-left: 20px;
-    }
-    .timeline-item::before {
-      content: '🌺';
-      position: absolute;
-      left: -38px;
-      top: 0;
-      font-size: 1.3rem;
-    }
-    .timeline-item h3 {
-      color: var(--secondary-orange);
-      font-size: 1.4rem;
-      margin-bottom: 6px;
-    }
-    .timeline-item p {
-      color: #d1c7e0;
-      line-height: 1.6;
-      font-size: 1rem;
     }
 
-    /* GALLERY GRID */
+    .timeline-card h3 {
+      color: var(--sacred-maroon);
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+
+    .timeline-card p {
+      color: #4A0000;
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+
+    /* DEVOTIONAL GALLERY GRID */
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 20px;
     }
+
     .gallery-card {
       border-radius: 12px;
       overflow: hidden;
-      height: 220px;
+      height: 250px;
       position: relative;
-      border: 1px solid var(--primary-gold);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      border: 3px solid var(--temple-gold);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
+
     .gallery-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.4s ease;
+      transition: transform 0.5s ease;
     }
+
     .gallery-card:hover img {
-      transform: scale(1.1);
+      transform: scale(1.12);
     }
 
     /* FOOTER */
     footer {
       text-align: center;
-      padding: 35px 20px;
-      background: #06010d;
-      color: #999;
-      border-top: 1px solid #222;
+      padding: 40px 20px;
+      background: var(--sacred-maroon);
+      color: #FFE082;
+      border-top: 4px solid var(--temple-gold);
       margin-top: 60px;
-      font-size: 0.95rem;
+      font-size: 1.05rem;
     }
   </style>
 </head>
 <body>
 
-  <!-- FALLING MODAKS & FLOWERS ANIMATION CANVAS -->
+  <!-- FALLING MARIGOLD FLOWERS & MODAK PARTICLES CANVAS -->
   <canvas id="falling-canvas"></canvas>
 
-  <!-- PARALLAX HERO SECTION -->
+  <!-- SACRED PARALLAX HERO HEADER -->
   <header class="hero">
-    <h1>✨ Vinayaka Chavithi Utsav 2026 ✨</h1>
-    <p>Ganesh Utsav Celebrations | Sep 14 – Sep 20, 2026</p>
+    <div class="shloka-header">॥ वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ । निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥</div>
+    <h1 class="hero-title">ॐ श्री गणेशाय नमः ॐ</h1>
+    <div class="hero-subtitle">Ganesh Utsav 2026 | Sep 14 – Sep 20, 2026</div>
 
-    <!-- DEVOTIONAL MUSIC PLAYER -->
+    <!-- VEDIC AUDIO PLAYER CONTROLLER -->
     <div class="audio-card">
-      <span>🪔 Devotional Chants</span>
-      <button class="audio-btn" id="audio-toggle-btn" onclick="toggleDevotionalAudio()">▶ Play Audio</button>
+      <span>🔔 Vedic Ganesha Chants & Mantras</span>
+      <button class="audio-btn" id="audio-toggle-btn" onclick="toggleDevotionalAudio()">▶ Play Mantra</button>
       <audio id="devotional-audio" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=devotional-flute-11234.mp3"></audio>
     </div>
   </header>
 
-  <!-- MAIN NAVIGATION TABS -->
+  <!-- SACRED NAVIGATION TABS -->
   <nav class="nav-bar">
-    <button class="nav-tab-btn active" onclick="switchMainTab('tab-forms', this)">📋 Event Registrations</button>
-    <button class="nav-tab-btn" onclick="switchMainTab('tab-timeline', this)">📅 Festival Significance</button>
-    <button class="nav-tab-btn" onclick="switchMainTab('tab-gallery', this)">🖼️ Celebrations Gallery</button>
+    <button class="nav-tab-btn active" onclick="switchMainTab('tab-forms', this)">📋 Utsav Registrations</button>
+    <button class="nav-tab-btn" onclick="switchMainTab('tab-timeline', this)">🕉️ Vedic Significance</button>
+    <button class="nav-tab-btn" onclick="switchMainTab('tab-gallery', this)">🖼️ Devotional Gallery</button>
   </nav>
 
   <!-- TAB 1: EMBEDDED GOOGLE FORMS -->
   <main id="tab-forms" class="container content-section active">
-    <h2 class="section-title">Registration & Sponsorship Forms</h2>
+    <h2 class="section-title">Festival Registration Portal</h2>
     
     <div class="form-selector-bar">
-      <button class="form-sub-btn active" onclick="loadForm('pooja', this)">1. Pooja & Prasadam</button>
+      <button class="form-sub-btn active" onclick="loadForm('pooja', this)">1. Daily Pooja & Prasadam</button>
       <button class="form-sub-btn" onclick="loadForm('lottery', this)">2. Idol & Laddu Lottery</button>
       <button class="form-sub-btn" onclick="loadForm('cultural', this)">3. Cultural & Sports</button>
-      <button class="form-sub-btn" onclick="loadForm('volunteer', this)">4. Volunteer Sign-Up</button>
+      <button class="form-sub-btn" onclick="loadForm('volunteer', this)">4. Volunteer Corps</button>
     </div>
 
     <div class="iframe-wrapper">
@@ -297,43 +333,47 @@
     </div>
   </main>
 
-  <!-- TAB 2: FESTIVAL SIGNIFICANCE TIMELINE -->
+  <!-- TAB 2: VEDIC SIGNIFICANCE TIMELINE -->
   <section id="tab-timeline" class="container content-section">
-    <h2 class="section-title">Spiritual & Historical Significance</h2>
-    <div class="timeline">
-      <div class="timeline-item">
-        <h3>Day 1: Prana Pratishtha & Avahan (Sep 14)</h3>
-        <p>Invoking the divine presence into the idol with sacred Vedic chants, marking the commencement of the 7-day festivities with devotion and community togetherness.</p>
+    <h2 class="section-title">Spiritual & Vedic Significance</h2>
+    
+    <div style="max-width: 850px; margin: 0 auto;">
+      <div class="timeline-card">
+        <h3>Day 1: Sthapana & Prana Pratishtha (Sep 14)</h3>
+        <p>Invoking the Supreme Consciousness into the consecrated Idol through sacred Atharvashirsha chants, filling our surroundings with positivity and spiritual bliss.</p>
       </div>
-      <div class="timeline-item">
-        <h3>The Sacred Offering of 21 Modaks</h3>
-        <p>Offering Lord Ganesha his favorite sweet delicacy, the Modak, which symbolizes the sweet reward of spiritual enlightenment, patience, and knowledge.</p>
+
+      <div class="timeline-card">
+        <h3>The Sacred 21 Modak Offering (Naivedyam)</h3>
+        <p>Offering 21 Modaks symbolizing the 21 spiritual dimensions and the sweet reward of self-realization and divine knowledge.</p>
       </div>
-      <div class="timeline-item">
-        <h3>Community Cultural Bonding</h3>
-        <p>Champions the spirit of unity and cultural expression through youth talent showcases, traditional folk dances, drama competitions, and spiritual bhajans.</p>
+
+      <div class="timeline-card">
+        <h3>Sahasranama Archana & Annadanam (Sep 18)</h3>
+        <p>Chanting the 1,000 divine names of Lord Ganesha followed by Mahaprasadam distribution, embodying the Vedic ideal of <em>Atithi Devo Bhava</em>.</p>
       </div>
-      <div class="timeline-item">
-        <h3>Day 7: Visarjan Shobha Yatra (Sep 20)</h3>
-        <p>The grand farewell procession and eco-friendly immersion ceremony, signifying the natural cycle of creation, return to the elements, and blessing for the coming year.</p>
+
+      <div class="timeline-card">
+        <h3>Day 7: Uttar Pooja & Eco-Visarjan (Sep 20)</h3>
+        <p>Performing the farewell Uttar Pooja and immersing the eco-friendly Idol, meditating on the eternal cycle of creation and return to the Formless Absolute.</p>
       </div>
     </div>
   </section>
 
-  <!-- TAB 3: PHOTO GALLERY -->
+  <!-- TAB 3: DEVOTIONAL PHOTO GALLERY -->
   <section id="tab-gallery" class="container content-section">
-    <h2 class="section-title">Ganeshotsav Highlights</h2>
+    <h2 class="section-title">Devotional Celebrations</h2>
     <div class="gallery-grid">
-      <div class="gallery-card"><img src="https://images.unsplash.com/photo-1567225557594-88d73e55f2cb?auto=format&fit=crop&w=600&q=80" alt="Ganesh Deity"></div>
-      <div class="gallery-card"><img src="https://images.unsplash.com/photo-1605371924599-2d0365da1ae0?auto=format&fit=crop&w=600&q=80" alt="Evening Aarti"></div>
-      <div class="gallery-card"><img src="https://images.unsplash.com/photo-1631023202980-8774780ef468?auto=format&fit=crop&w=600&q=80" alt="Flowers & Mandap"></div>
-      <div class="gallery-card"><img src="https://images.unsplash.com/photo-1609137144813-7d9921338f24?auto=format&fit=crop&w=600&q=80" alt="Visarjan Celebration"></div>
+      <div class="gallery-card"><img src="https://images.unsplash.com/photo-1567225557594-88d73e55f2cb?auto=format&fit=crop&w=600&q=80" alt="Lord Ganesha Idol"></div>
+      <div class="gallery-card"><img src="https://images.unsplash.com/photo-1605371924599-2d0365da1ae0?auto=format&fit=crop&w=600&q=80" alt="Grand Evening Aarti"></div>
+      <div class="gallery-card"><img src="https://images.unsplash.com/photo-1631023202980-8774780ef468?auto=format&fit=crop&w=600&q=80" alt="Floral Decoration Mandap"></div>
+      <div class="gallery-card"><img src="https://images.unsplash.com/photo-1609137144813-7d9921338f24?auto=format&fit=crop&w=600&q=80" alt="Visarjan Procession"></div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p>Ganesh Utsav Committee 2026 | Vinayaka Chavithi Community Web Portal</p>
+    <p>ॐ गं गणपतये नमो नमः | Ganesh Utsav Committee 2026</p>
   </footer>
 
   <!-- SCRIPT ENGINE -->
@@ -366,18 +406,18 @@
       const btn = document.getElementById('audio-toggle-btn');
       if (audio.paused) {
         audio.play();
-        btn.textContent = '⏸ Pause Audio';
-        btn.style.background = '#fb8500';
-        btn.style.color = '#fff';
+        btn.textContent = '⏸ Pause Mantra';
+        btn.style.background = '#8B0000';
+        btn.style.color = '#FFF';
       } else {
         audio.pause();
-        btn.textContent = '▶ Play Audio';
-        btn.style.background = '#ffb703';
-        btn.style.color = '#0d021a';
+        btn.textContent = '▶ Play Mantra';
+        btn.style.background = 'linear-gradient(135deg, #FFD700, #FF9800)';
+        btn.style.color = '#8B0000';
       }
     }
 
-    // CANVAS PARTICLES ENGINE (FALLING FLOWERS & MODAKS)
+    // CANVAS PARTICLES ENGINE (FALLING MARIGOLD FLOWERS & MODAKS)
     const canvas = document.getElementById('falling-canvas');
     const ctx = canvas.getContext('2d');
 
@@ -388,16 +428,16 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    const particleEmojis = ['🌸', '🌺', '🌼', '🥟', '🏵️'];
+    const particleEmojis = ['🌼', '🌺', '🌸', '🥟', '🏵️'];
     const particles = [];
 
     for (let i = 0; i < 35; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: Math.random() * 20 + 16,
+        size: Math.random() * 22 + 16,
         emoji: particleEmojis[Math.floor(Math.random() * particleEmojis.length)],
-        speedY: Math.random() * 1.5 + 0.8,
+        speedY: Math.random() * 1.4 + 0.8,
         speedX: Math.sin(Math.random() * Math.PI) * 0.6,
         angle: Math.random() * 360,
         spin: Math.random() * 2 - 1
