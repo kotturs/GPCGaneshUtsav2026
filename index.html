@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ganesh Utsav 2026 | Community Portal</title>
+  <style>
+    /* CSS RESET & VARS */
+    :root {
+      --primary-gold: #ffb703;
+      --secondary-orange: #fb8500;
+      --bg-dark: #0d021a;
+      --card-bg: rgba(25px, 5px, 51px, 0.85);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-dark);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    /* FALLING CANVAS ANIMATION */
+    #falling-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* PARALLAX HERO SECTION */
+    .hero {
+      position: relative;
+      min-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(to bottom, rgba(13, 2, 26, 0.5), rgba(13, 2, 26, 0.98)),
+                  url('https://images.unsplash.com/photo-1567225557594-88d73e55f2cb?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat fixed;
+      padding: 40px 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      color: var(--primary-gold);
+      text-shadow: 0 0 25px rgba(255, 183, 3, 0.7);
+      margin-bottom: 15px;
+      font-weight: 800;
+    }
+    .hero p {
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      color: var(--secondary-orange);
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+    }
+
+    /* AUDIO CONTROLLER */
+    .audio-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 183, 3, 0.4);
+      padding: 12px 28px;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .audio-btn {
+      background: var(--primary-gold);
+      color: var(--bg-dark);
+      border: none;
+      padding: 10px 22px;
+      font-weight: 700;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+    }
+    .audio-btn:hover {
+      background: var(--secondary-orange);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* NAVIGATION TABS */
+    .nav-bar {
+      position: sticky;
+      top: 0;
+      background: #190533;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      padding: 15px;
+      z-index: 1000;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.6);
+      border-bottom: 2px solid var(--primary-gold);
+      flex-wrap: wrap;
+    }
+    .nav-tab-btn {
+      background: transparent;
+      color: #fff;
+      border: 1px solid var(--primary-gold);
+      padding: 10px 22px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .nav-tab-btn.active, .nav-tab-btn:hover {
+      background: var(--primary-gold);
+      color: var(--bg-dark);
+    }
+
+    /* MAIN CONTENT CONTAINER */
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      color: var(--primary-gold);
+      margin-bottom: 30px;
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 4px;
+      background: var(--secondary-orange);
+      margin: 10px auto 0;
+      border-radius: 2px;
+    }
+
+    /* FORMS CONTAINER & SWITCHER */
+    .content-section {
+      display: none;
+    }
+    .content-section.active {
+      display: block;
+    }
+    .form-selector-bar {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+    .form-sub-btn {
+      background: rgba(255, 183, 3, 0.1);
+      color: #fff;
+      border: 1px solid var(--secondary-orange);
+      padding: 8px 18px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: 0.3s;
+    }
+    .form-sub-btn.active, .form-sub-btn:hover {
+      background: var(--secondary-orange);
+      color: #fff;
+    }
+
+    .iframe-wrapper {
+      position: relative;
+      width: 100%;
+      height: 820px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+      border: 1px solid rgba(255, 183, 3, 0.3);
+      background: #ffffff;
+    }
+    .iframe-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* TIMELINE STYLES */
+    .timeline {
+      position: relative;
+      padding-left: 25px;
+      border-left: 3px solid var(--primary-gold);
+      margin: 30px auto;
+      max-width: 800px;
+    }
+    .timeline-item {
+      margin-bottom: 30px;
+      position: relative;
+      padding-left: 20px;
+    }
+    .timeline-item::before {
+      content: '🌺';
+      position: absolute;
+      left: -38px;
+      top: 0;
+      font-size: 1.3rem;
+    }
+    .timeline-item h3 {
+      color: var(--secondary-orange);
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+    }
+    .timeline-item p {
+      color: #d1c7e0;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    /* GALLERY GRID */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .gallery-card {
+      border-radius: 12px;
+      overflow: hidden;
+      height: 220px;
+      position: relative;
+      border: 1px solid var(--primary-gold);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+    .gallery-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .gallery-card:hover img {
+      transform: scale(1.1);
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 35px 20px;
+      background: #06010d;
+      color: #999;
+      border-top: 1px solid #222;
+      margin-top: 60px;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FALLING MODAKS & FLOWERS ANIMATION CANVAS -->
+  <canvas id="falling-canvas"></canvas>
+
+  <!-- PARALLAX HERO SECTION -->
+  <header class="hero">
+    <h1>✨ Vinayaka Chavithi Utsav 2026 ✨</h1>
+    <p>Ganesh Utsav Celebrations | Sep 14 – Sep 20, 2026</p>
+
+    <!-- DEVOTIONAL MUSIC PLAYER -->
+    <div class="audio-card">
+      <span>🪔 Devotional Chants</span>
+      <button class="audio-btn" id="audio-toggle-btn" onclick="toggleDevotionalAudio()">▶ Play Audio</button>
+      <audio id="devotional-audio" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=devotional-flute-11234.mp3"></audio>
+    </div>
+  </header>
+
+  <!-- MAIN NAVIGATION TABS -->
+  <nav class="nav-bar">
+    <button class="nav-tab-btn active" onclick="switchMainTab('tab-forms', this)">📋 Event Registrations</button>
+    <button class="nav-tab-btn" onclick="switchMainTab('tab-timeline', this)">📅 Festival Significance</button>
+    <button class="nav-tab-btn" onclick="switchMainTab('tab-gallery', this)">🖼️ Celebrations Gallery</button>
+  </nav>
+
+  <!-- TAB 1: EMBEDDED GOOGLE FORMS -->
+  <main id="tab-forms" class="container content-section active">
+    <h2 class="section-title">Registration & Sponsorship Forms</h2>
+    
+    <div class="form-selector-bar">
+      <button class="form-sub-btn active" onclick="loadForm('pooja', this)">1. Pooja & Prasadam</button>
+      <button class="form-sub-btn" onclick="loadForm('lottery', this)">2. Idol & Laddu Lottery</button>
+      <button class="form-sub-btn" onclick="loadForm('cultural', this)">3. Cultural & Sports</button>
+      <button class="form-sub-btn" onclick="loadForm('volunteer', this)">4. Volunteer Sign-Up</button>
+    </div>
+
+    <div class="iframe-wrapper">
+      <iframe id="google-form-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLSelXnOkd7-CdHhIjHekh9pI5BjdunFRXlR-MmX4cDhB3iKbGA/viewform?embedded=true">Loading Registration Form...</iframe>
+    </div>
+  </main>
+
+  <!-- TAB 2: FESTIVAL SIGNIFICANCE TIMELINE -->
+  <section id="tab-timeline" class="container content-section">
+    <h2 class="section-title">Spiritual & Historical Significance</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h3>Day 1: Prana Pratishtha & Avahan (Sep 14)</h3>
+        <p>Invoking the divine presence into the idol with sacred Vedic chants, marking the commencement of the 7-day festivities with devotion and community togetherness.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>The Sacred Offering of 21 Modaks</h3>
+        <p>Offering Lord Ganesha his favorite sweet delicacy, the Modak, which symbolizes the sweet reward of spiritual enlightenment, patience, and knowledge.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>Community Cultural Bonding</h3>
+        <p>Champions the spirit of unity and cultural expression through youth talent showcases, traditional folk dances, drama competitions, and spiritual bhajans.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>Day 7: Visarjan Shobha Yatra (Sep 20)</h3>
+        <p>The grand farewell procession and eco-friendly immersion ceremony, signifying the natural cycle of creation, return to the elements, and blessing for the coming year.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 3: PHOTO GALLERY -->
+  <section id="tab-gallery" class="container content-section">
+    <h2 class="section-title">Ganeshotsav Highlights</h2>
+    <div class="gallery-grid">
+      <div class="gallery-card"><img src="https://images.unsplash.com/photo-1567225557594-88d73e55f2cb?auto=format&fit=crop&w=600&q=80" alt="Ganesh Deity"></div>
+      <div class="gallery-card"><img src="https://images.unsplash.com/photo-1605371924599-2d0365da1ae0?auto=format&fit=crop&w=600&q=80" alt="Evening Aarti"></div>
+      <div class="gallery-card"><img src="https://images.unsplash.com/photo-1631023202980-8774780ef468?auto=format&fit=crop&w=600&q=80" alt="Flowers & Mandap"></div>
+      <div class="gallery-card"><img src="https://images.unsplash.com/photo-1609137144813-7d9921338f24?auto=format&fit=crop&w=600&q=80" alt="Visarjan Celebration"></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Ganesh Utsav Committee 2026 | Vinayaka Chavithi Community Web Portal</p>
+  </footer>
+
+  <!-- SCRIPT ENGINE -->
+  <script>
+    // FORM ROUTING MAP
+    const googleForms = {
+      pooja: "https://docs.google.com/forms/d/e/1FAIpQLSelXnOkd7-CdHhIjHekh9pI5BjdunFRXlR-MmX4cDhB3iKbGA/viewform?embedded=true",
+      lottery: "https://docs.google.com/forms/d/e/1FAIpQLScI_R0jQeju7oV_-LQvVadCezSZcjO_SzAjFU6D0UpVDCbqRA/viewform?embedded=true",
+      cultural: "https://docs.google.com/forms/d/e/1FAIpQLSfbTg0yCAoFxJZGDg5efQ3M0BSAqXgx5aCseD0mG8Fo8JUcRg/viewform?embedded=true",
+      volunteer: "https://docs.google.com/forms/d/e/1FAIpQLSdEGmm3H46ujofCAbKYd-3AmPBg2HQk4Vvghx9slD7WwxCIug/viewform?embedded=true"
+    };
+
+    function loadForm(key, btn) {
+      document.getElementById('google-form-iframe').src = googleForms[key];
+      document.querySelectorAll('.form-sub-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    // MAIN NAVIGATION TAB SWITCHER
+    function switchMainTab(tabId, btn) {
+      document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
+      document.querySelectorAll('.nav-tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    // DEVOTIONAL AUDIO CONTROLLER
+    function toggleDevotionalAudio() {
+      const audio = document.getElementById('devotional-audio');
+      const btn = document.getElementById('audio-toggle-btn');
+      if (audio.paused) {
+        audio.play();
+        btn.textContent = '⏸ Pause Audio';
+        btn.style.background = '#fb8500';
+        btn.style.color = '#fff';
+      } else {
+        audio.pause();
+        btn.textContent = '▶ Play Audio';
+        btn.style.background = '#ffb703';
+        btn.style.color = '#0d021a';
+      }
+    }
+
+    // CANVAS PARTICLES ENGINE (FALLING FLOWERS & MODAKS)
+    const canvas = document.getElementById('falling-canvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    const particleEmojis = ['🌸', '🌺', '🌼', '🥟', '🏵️'];
+    const particles = [];
+
+    for (let i = 0; i < 35; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 20 + 16,
+        emoji: particleEmojis[Math.floor(Math.random() * particleEmojis.length)],
+        speedY: Math.random() * 1.5 + 0.8,
+        speedX: Math.sin(Math.random() * Math.PI) * 0.6,
+        angle: Math.random() * 360,
+        spin: Math.random() * 2 - 1
+      });
+    }
+
+    function renderParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach(p => {
+        p.y += p.speedY;
+        p.x += p.speedX;
+        p.angle += p.spin;
+
+        if (p.y > canvas.height + 30) {
+          p.y = -30;
+          p.x = Math.random() * canvas.width;
+        }
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.angle * Math.PI) / 180);
+        ctx.font = `${p.size}px serif`;
+        ctx.fillText(p.emoji, 0, 0);
+        ctx.restore();
+      });
+
+      requestAnimationFrame(renderParticles);
+    }
+
+    renderParticles();
+  </script>
+</body>
+</html>
